@@ -64,9 +64,10 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: apollo
+## theme: landscape
 
-# 在归档页面显示所有文章
-# 需要上面安装的 hexo-generator-archive 插件支持
+# archive all post do not paginate
+# need hexo-generator-archive plugin support
 archive_generator:
   per_page: 0
   yearly: false
