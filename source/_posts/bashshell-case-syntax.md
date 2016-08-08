@@ -1,6 +1,6 @@
 ---
 title: bash shell 获取命令行参数
-tags: ["bash", "case"]
+tags: ["bash", "case", "command"]
 
 date: 2016-07-12 10:42:00
 ---

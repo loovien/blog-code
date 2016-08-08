@@ -2,7 +2,8 @@ menu:
     Blog: /
     Archive: /archives/
     Weibo: http://weibo.com/loovien
-    GitHub: https://github.com/vvdotman
+    GitHub: https://github.com/vvotman
+    AboutMe: /me/
     Rss: /atom.xml
 
 favicon: /favicon.png
