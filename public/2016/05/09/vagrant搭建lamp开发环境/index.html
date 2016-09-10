@@ -1,0 +1,95 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> vagrant搭建lamp开发环境 · vvotman</title><meta name="description" content="vagrant搭建lamp开发环境 - vvotman(luowen)"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><div class="wrap"><header><a href="/" class="logo-link"><!--img(src=theme.logo)--></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/loovien" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/vvotman" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/me/" target="_self" class="nav-list-link">ABOUTME</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">vagrant搭建lamp开发环境</h1><div class="post-info">May 9, 2016</div><div class="post-content"><h1 id="使用vagrant快速搭建分享开发环境"><a href="#使用vagrant快速搭建分享开发环境" class="headerlink" title="使用vagrant快速搭建分享开发环境"></a>使用vagrant快速搭建分享开发环境</h1><h3 id="本案列操作环境"><a href="#本案列操作环境" class="headerlink" title="本案列操作环境"></a>本案列操作环境</h3><p>1. windows7 vagrant1.8.1 virtualbox4.3</p>
+<h3 id="安装virtualbox4-x-或更高"><a href="#安装virtualbox4-x-或更高" class="headerlink" title="安装virtualbox4.x(或更高)"></a>安装virtualbox4.x(或更高)</h3><p>1. virtualbox, win7下傻瓜式安装, 无需配置, 略过.  </p>
+<h3 id="安装vagrant"><a href="#安装vagrant" class="headerlink" title="安装vagrant"></a>安装vagrant</h3><p>1. 下载vagrant软件包 <a href="https://www.vagrantup.com/downloads.html" target="_blank" rel="external">地址</a>, 安装(windows傻瓜式安装, 不多说).  </p>
+<p>2. 创建vagrant工程目录, 初始化Vagrantfile.  </p>
+<pre><code>F:\&gt; mkdir vagrant
+F:\&gt; cd vagrant
+F:\vagrant&gt;vagrant.exe init
+    A `Vagrantfile` has been placed in this directory. You are now
+    ready to `vagrant up` your first virtual environment! Please read
+    the comments in the Vagrantfile as well as documentation on
+    `vagrantup.com` for more information on using Vagrant.
+</code></pre><p>3. 添加box(类似docker的容器), 到<a href="https://atlas.hashicorp.com/boxes/search" target="_blank" rel="external">官方源</a>下载需要的box, 本案例下载(puppetlabs/centos-6.6-64-nocm)(<a href="https://atlas.hashicorp.com/puppetlabs/boxes/centos-6.6-64-nocm),公司服务器是centos6.x" target="_blank" rel="external">https://atlas.hashicorp.com/puppetlabs/boxes/centos-6.6-64-nocm),公司服务器是centos6.x</a>.  </p>
+<pre><code>    F:\vagrant&gt;vagrant box add puppetlabs/centos-6.6-64-nocm
+    ==&gt; box: Loading metadata for box &apos;puppetlabs/centos-6.6-64-nocm&apos;
+        box: URL: https://atlas.hashicorp.com/puppetlabs/centos-6.6-64-nocm
+    This box can work with multiple providers! The providers that it
+    can work with are listed below. Please review the list and choose
+    the provider you will be working with.
+
+    1) virtualbox
+    2) vmware_desktop
+
+    Enter your choice: 1
+    ==&gt; box: Adding box &apos;puppetlabs/centos-6.6-64-nocm&apos; (v1.0.3) for provider: virtualbox
+        box: Downloading: https://atlas.hashicorp.com/puppetlabs/boxes/centos-6.6-64-nocm/versions/1.0.3/providers/virtualbox.box
+        box: Progress: 0% (Rate: 27052/s, Estimated time remaining: 3:23:32)==&gt; box: Waiting for cleanup before exiting...
+
+        box: Progress: 0% (Rate: 23813/s, Estimated time remaining: 3:26:33)
+    ==&gt; box: Box download was interrupted. Exiting.
+
+ps: 慢的有的一B啊, 果断复制链接, 迅雷下载, 安装*.box文件. 速度还能接受.  
+    ![download](http://images2015.cnblogs.com/blog/451327/201605/451327-20160509131846359-688138673.png)
+
+box命令略解: `vagrant box add [可选参数] &lt;官方源名称, url链接地址, 下载后的*.box文件&gt;`   
+
+安装box文件(秒干):  
+
+        F:\vagrant&gt;vagrant box add --name puppetlabs/centos-6.6-64-nocm  F:\boxes\virtualbox.box
+        ==&gt; box: Box file was not detected as metadata. Adding it directly...
+        ==&gt; box: Adding box &apos;puppetlabs/centos-6.6-64-nocm&apos; (v0) for provider:
+            box: Unpacking necessary files from: file://F:/boxes/virtualbox.box
+            box: Progress: 100% (Rate: 658M/s, Estimated time remaining: --:--:--)
+        ==&gt; box: Successfully added box &apos;puppetlabs/centos-6.6-64-nocm&apos; (v0) for &apos;virtualbox&apos;!
+</code></pre><p>4. 使用刚下在的box</p>
+<pre><code>1\. 编辑vagrant工程目录下的Vagrantfile文件  
+
+        15行: config.vm.box = &quot;puppetlabs/centos-6.6-64-nocm&quot;
+
+2\. 启动vagrant(此处会启动virtualbox, 预先安装virtualbox, win7安装有点小问题, 请自行google或百度解决)  
+
+        vagrant up
+
+3\. ssh上去(默认F:/vagrant 自动挂载到/vagrant)上  
+
+        F:\vagrant&gt;vagrant ssh
+        Last login: Fri May  6 02:33:11 2016 from 10.0.2.2
+        [vagrant@localhost ~]$ ls /
+        bin  boot  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  sbin  selinux  srv  sys  tmp  usr  vagrant  var
+        [vagrant@localhost ~]$
+
+4\. 在/vagrant创建的文件, 会同步到 F:\&gt;vagrant下.  
+</code></pre><h3 id="Centos-Box-安装lamp环境"><a href="#Centos-Box-安装lamp环境" class="headerlink" title="Centos Box 安装lamp环境"></a>Centos Box 安装lamp环境</h3><blockquote>
+<p>本案列使用 apache2.4, php5.6.12 mysql5.7 编译安装, 源文件都一打包好, 有需要可以找我要<a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#x3a;&#x6c;&#x6f;&#111;&#x76;&#x69;&#101;&#110;&#x40;&#49;&#x36;&#x33;&#46;&#99;&#x6f;&#x6d;">&#x6c;&#x6f;&#111;&#x76;&#x69;&#101;&#110;&#x40;&#49;&#x36;&#x33;&#46;&#99;&#x6f;&#x6d;</a>.  </p>
+</blockquote>
+<p>1. 默认所有服务安装到/usr/local/webserver目录下.  </p>
+<p>2. 安装必要的依赖.  </p>
+<pre><code>$ sudo yum groupinstall &quot;Development tools&quot;
+</code></pre><p>3. apache2.4 编译.  </p>
+<pre><code>1\. http2.4.x源码包中不含有apr apr-util [下载它们](http://apr.apache.org/download.cgi), 解压到http2.4.x/srclib下.  
+2\. 下载pcre-8.3.x.tar.gz, 解压 执行 `./configure &amp;&amp; make &amp;&amp; make install`.  
+3\. 编译apache2.4.x 定位到httpd源码目录, 执行编译`./configure --enable-file-cache --enable-cache --enable-disk-cache --enable-mem-cache --enable-expires --enable-headers --enable-usertrack  --enable-cgi --enable-vhost-alias --enable-rewrite --enable-so --with-include-apr --prefix=/usr/local/webserver`, `make &amp;&amp; make install`
+4\. 配置httpd DocumentRoot =\&gt; /vagrant/www目录下.  
+</code></pre><p>4. 编译php</p>
+<pre><code>1\. 安装依赖, 没办法, 编译就是这样, 少了什么依赖就安装什么依赖, 编译安装.  
+
+    $ sudo yum install libxml2 libxml-devel
+    $ ./configure --prefix=/usr/local/webserver/php --with-mysql
+    $ make &amp;&amp; make install
+</code></pre><p>5. 编译mysql  </p>
+<pre><code>1\. 完全编译mysql5.5工程量比较大, 本例下载二进制包, [下载](http://dev.mysql.com/downloads/mysql/).  
+2\. 解压后查看README文档安装即可
+</code></pre><p>6. 运行项目可能需要编译php扩展, 自行安装即可, 使用 <code>phpize</code>.  </p>
+<p>7. 在/etc/rc.local, 添加apache2, mysql 启动命令, 是开机启动.  </p>
+<h3 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h3><p>1. 后期自动把项目挂载F:\vagrant下, 让虚拟box的http Document目录软链接到 /vagrant目录即可.</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/05/30/如何实现6位数表示百亿/" class="prev">PREV</a><a href="/2016/05/08/［chrome／chromium］插件-vimium-简单使用/" class="next">NEXT</a></div><div data-thread-key="2016/05/09/vagrant搭建lamp开发环境/" data-title="vagrant搭建lamp开发环境" data-url="http://vvotman.github.io/2016/05/09/vagrant搭建lamp开发环境/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"superwm"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2015 - 2016 <a href="http://vvotman.github.io">vvotman(luowen)</a>, unless otherwise noted.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-78479444-1",'auto');ga('send','pageview');</script></body></html>
