@@ -71,6 +71,52 @@ tags:
 
                 delimiter ;
             ```
+=======
+
+    1. 编写过程
+
+        ```sql
+
+            delimiter ;;
+
+            create procedure demo()
+
+            begin
+
+            declare done int default 0;
+            declare prevalue int default 0;
+            declare vid int;
+            declare currentvalue int;
+
+            -- 声明游标
+
+            declare demo_cursor cursor for select id, age from demo;
+            declare continue handler for not found set done = 1;
+
+            -- 打开游标
+
+            open demo_cursor;
+
+            -- 循环操作
+            read_loop: LOOP
+
+                fetch invest into vid, currentvalue;
+                set prevalue := prevalue+currentvalue;
+
+                if done then
+                    leave read_loop;
+                end if;
+
+                update demo set age = prevalue where id = id;
+
+            end LOOP;
+            CLOSE demo_cursor;
+
+            end;
+            ;;
+
+            delimiter ;
+        ```
 
     2. 执行过程 `call demo();`
 
