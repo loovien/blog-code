@@ -429,7 +429,7 @@ box命令略解: `vagrant box add [可选参数] &amp;lt;官方源名称, url链
 
 4\. 在/vagrant创建的文件, 会同步到 F:\&amp;gt;vagrant下.  
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;Centos-Box-安装lamp环境&quot;&gt;&lt;a href=&quot;#Centos-Box-安装lamp环境&quot; class=&quot;headerlink&quot; title=&quot;Centos Box 安装lamp环境&quot;&gt;&lt;/a&gt;Centos Box 安装lamp环境&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;本案列使用 apache2.4, php5.6.12 mysql5.7 编译安装, 源文件都一打包好, 有需要可以找我要&lt;a href=&quot;&amp;#x6d;&amp;#x61;&amp;#105;&amp;#x6c;&amp;#x74;&amp;#x6f;&amp;#58;&amp;#x6c;&amp;#111;&amp;#x6f;&amp;#118;&amp;#105;&amp;#x65;&amp;#x6e;&amp;#64;&amp;#49;&amp;#54;&amp;#x33;&amp;#x2e;&amp;#99;&amp;#x6f;&amp;#109;&quot;&gt;&amp;#x6c;&amp;#111;&amp;#x6f;&amp;#118;&amp;#105;&amp;#x65;&amp;#x6e;&amp;#64;&amp;#49;&amp;#54;&amp;#x33;&amp;#x2e;&amp;#99;&amp;#x6f;&amp;#109;&lt;/a&gt;.  &lt;/p&gt;
+&lt;p&gt;本案列使用 apache2.4, php5.6.12 mysql5.7 编译安装, 源文件都一打包好, 有需要可以找我要&lt;a href=&quot;&amp;#109;&amp;#x61;&amp;#x69;&amp;#108;&amp;#x74;&amp;#x6f;&amp;#58;&amp;#x6c;&amp;#111;&amp;#111;&amp;#x76;&amp;#105;&amp;#x65;&amp;#x6e;&amp;#64;&amp;#49;&amp;#x36;&amp;#x33;&amp;#x2e;&amp;#x63;&amp;#111;&amp;#109;&quot;&gt;&amp;#x6c;&amp;#111;&amp;#111;&amp;#x76;&amp;#105;&amp;#x65;&amp;#x6e;&amp;#64;&amp;#49;&amp;#x36;&amp;#x33;&amp;#x2e;&amp;#x63;&amp;#111;&amp;#109;&lt;/a&gt;.  &lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;1. 默认所有服务安装到/usr/local/webserver目录下.  &lt;/p&gt;
 &lt;p&gt;2. 安装必要的依赖.  &lt;/p&gt;
