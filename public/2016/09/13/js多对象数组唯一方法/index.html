@@ -1,0 +1,100 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> js多对象数组唯一方法 · vvotman</title><meta name="description" content="js多对象数组唯一方法 - vvotman(luowen)"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/loovien" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/vvotman" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/me/" target="_self" class="nav-list-link">ABOUTME</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">js多对象数组唯一方法</h1><div class="post-info">Sep 13, 2016</div><div class="post-content"><p>前些天做项目, 小伙伴遇到一个js多对象数组, 求唯一问题, 思考了很久, 没有找到好的方案. 小伙伴使用了递归, 个人感觉不是最好的方案.<br>今天有空重写了一个.</p>
+<a id="more"></a>
+<h2 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h2><ul>
+<li><p>遍历数组中的对象, 第一个对象和接下来所有的对象进行对比, 如果碰到一致的, 将其删除. 自身对象进行处理.</p>
+</li>
+<li><p>问题主要处在删除后, 数组的索引发生变更, 之前没有考虑到. 一直不正确. 今天把代码贴出. 欢迎拍砖.! :)</p>
+</li>
+<li><p>es6 code 需要babeljs转换下</p>
+<pre><code>// es6 code
+const uniq = (source = [], fields = [], callback = ()=&gt;{}) =&gt; {
+  for(let i = 0; i &lt; source.length; i++){
+    for(let j = i+1; j &lt; source.length; j++){
+        /*
+         * 对比对象中的字段(传入的参数)是否相等 返回一个和fileds数组相同数量的true, false数组,
+         * 本列子返回[false, true], 对返回的true, false数组reduce计算, 看看对象是否相等, 如果相等
+         * 调用callback, 删除原数组中相同的对象, 原数组相同的对象删除后, for循环需要回退.
+         */
+      if(fields.map((field) =&gt; {
+        return source[i][field] == source[j][field];
+      }).reduce((prev, next) =&gt; prev&amp;&amp;next)){
+        source[i] = callback(source[i]);
+        source.splice(j, 1);
+        j--; // 回退for
+      }
+    }
+  }
+  return source;
+};
+
+let source = [
+  {name: &apos;luo&apos;, age: 3, count:1}, 
+  {name: &apos;v&apos;, age: 2, count:1}, 
+  {name: &apos;luo&apos;, age: 3, count:1},
+  {name: &apos;luo&apos;, age: 3, count:1},
+  {name: &apos;luo&apos;, age: 3, count:1},
+  {name: &apos;v&apos;, age: 2, count:1}, 
+  {name: &apos;luo&apos;, age: 3, count:1}, 
+  {name: &apos;v&apos;, age: 3, count:1}, 
+  {name: &apos;v&apos;, age: 2, count:1}, 
+  {name: &apos;v&apos;, age: 42, count:1}, 
+];
+
+let ret = uniq(source, [&apos;name&apos;, &apos;age&apos;], (item) =&gt; {
+  item.count += 1;
+  return item;
+});
+</code></pre></li>
+<li><p>es5 转换好的code</p>
+<pre><code>// es5 code
+&apos;use strict&apos;;
+
+var uniq = function uniq() {
+  var source = arguments.length &lt;= 0 || arguments[0] === undefined ? [] : arguments[0];
+  var fields = arguments.length &lt;= 1 || arguments[1] === undefined ? [] : arguments[1];
+  var callback = arguments.length &lt;= 2 || arguments[2] === undefined ? function () {} : arguments[2];
+
+  var _loop = function _loop(i) {
+    var _loop2 = function _loop2(_j) {
+      if (fields.map(function (field) {
+        return source[i][field] == source[_j][field];
+      }).reduce(function (prev, next) {
+        return prev &amp;&amp; next;
+      })) {
+        source[i] = callback(source[i]);
+        source.splice(_j, 1);
+        _j--;
+      }
+      j = _j;
+    };
+
+    for (var j = i + 1; j &lt; source.length; j++) {
+      _loop2(j);
+    }
+  };
+
+  for (var i = 0; i &lt; source.length; i++) {
+    _loop(i);
+  }
+  return source;
+};
+
+var source = [{ name: &apos;luo&apos;, age: 3, count: 1 }, { name: &apos;v&apos;, age: 2, count: 1 }, { name: &apos;luo&apos;, age: 3, count: 1 }, { name: &apos;luo&apos;, age: 3, count: 1 }, { name: &apos;luo&apos;, age: 3, count: 1 }, { name: &apos;v&apos;, age: 2, count: 1 }, { name: &apos;luo&apos;, age: 3, count: 1 }, { name: &apos;v&apos;, age: 3, count: 1 }, { name: &apos;v&apos;, age: 2, count: 1 }, { name: &apos;v&apos;, age: 42, count: 1 }];
+
+var ret = uniq(source, [&apos;name&apos;, &apos;age&apos;], function (item) {
+  item.count += 1;
+  return item;
+});
+//console.log(ret)
+</code></pre></li>
+</ul>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/09/10/简单的mysql过程实现数据行累加/" class="next">NEXT</a></div><div data-thread-key="2016/09/13/js多对象数组唯一方法/" data-title="js多对象数组唯一方法" data-url="http://vvotman.github.io/2016/09/13/js多对象数组唯一方法/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"superwm"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script><div class="copyright"><p>© 2015 - 2016 <a href="http://vvotman.github.io">vvotman(luowen)</a>, unless otherwise noted.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-78479444-1",'auto');ga('send','pageview');</script></body></html>
