@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: vvotman
+title: vvotm
 subtitle: 
 description:
-author: vvotman(luowen)
+author: vvotm(luowen)
 language:
 timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://vvotman.github.io
+url: http://vvotm.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -78,6 +78,6 @@ archive_generator:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/vvotman/vvotman.github.io.git
+  repo: https://github.com/vvotm/vvotm.github.io.git
   branch: master
   message: Site Update:{{now('YYYY-MM-DD HH:mm:ss')}}
