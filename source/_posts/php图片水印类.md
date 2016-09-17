@@ -3,6 +3,9 @@ title: php图片水印类
 tags: []
 date: 2015-06-25 14:45:00
 ---
+php中图片水印处理类
+
+<!-- more -->
 
 <div class="cnblogs_code">
 <pre>&lt;?<span style="color: #000000;">php
@@ -225,4 +228,3 @@ date: 2015-06-25 14:45:00
 }</span></pre>
 </div>
 
-&nbsp;
