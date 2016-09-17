@@ -36,7 +36,7 @@
 2. 商品管理后台使用laravel5.2提供数据, 模版结合vuejs实现友好交互.
 3. 商品前台(手机端)使用reactjs构建一个单页应用, 认证服务器使用swoole提供高性能jwt(json web token)服务, api服务器使用laravel5.2 restfull api + cors 提供服务. 前台(手机端)实现前后端完全分离.
 4. 主要贡献, 前期项目脚手架搭建(自定框架), jwt验证(数据提供分离)实现, 跨域实现, 和CI框架实现sso单点的登入. api服务版本控制实现. 后期业务模块开发. 上线优化.
-5. [项目地址: http://trade.51lianying.mobi](http://trade.51lianying.mobi)
+5. [项目地址: http://trade.51lianying.mobi](http://trade.51lianying.mobi/yPwoXR.html)
 
 
 **[渠道/代理商]后台项目**
