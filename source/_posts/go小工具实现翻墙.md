@@ -22,7 +22,7 @@ tags:
 
 * 以下是代码部分, 刚学, 多指教, 勿喷。
 
-        ```go
+        ```java
             package main
             import (
                 "encoding/json"
