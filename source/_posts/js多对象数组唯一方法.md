@@ -18,6 +18,7 @@ tags:
 
 * es6 code 需要babeljs转换下
 
+    ```javascript
         // es6 code
         const uniq = (source = [], fields = [], callback = ()=>{}) => {
           for(let i = 0; i < source.length; i++){
@@ -57,7 +58,7 @@ tags:
           return item;
         });
 
-* es5 转换好的code
+        * es5 转换好的code
 
         // es5 code
         'use strict';
@@ -99,3 +100,4 @@ tags:
           return item;
         });
         //console.log(ret)
+    ```

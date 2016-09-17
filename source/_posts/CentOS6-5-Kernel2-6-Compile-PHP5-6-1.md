@@ -4,6 +4,11 @@ tags: []
 date: 2015-08-30 00:15:00
 ---
 
+今天手动编译php5.6, CentOS6.x yum源的php版本就的掉渣。 虽然网上教程多的很, 但自己还是记录下吧。
+
+<!-- more -->
+
+
 >CentOS的镜像源php版本是5.3,好旧，使用5.6
 
 *  **到php官方网站下载最新的phpxxx.tar.bz2 [php official website](http://php.net),后使用命令**
