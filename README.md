@@ -1,1 +1,3 @@
-# blog-codeUse hexo build personal blog.Source code repository.
+# blog-code
+This is my personal blog.
+use [hexo](https://hexo.io) blog system build.
