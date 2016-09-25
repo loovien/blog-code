@@ -11,7 +11,6 @@ tags: python
 
 ### 主要思路
 
-<<<<<<< HEAD
 * 检测**BINLOG**到**BINLOG**段的行数放入一个集合中, 变量匹配, 如果集合中有删除`delete`, 字段, 则不写入到结果文件中.一下给出的是样列数据, 需要处理包含delete的BINLOG区域部分
 
     ```sql
@@ -123,13 +122,8 @@ tags: python
         # at 22333
         #160925  0:07:27 server id 1  end_log_pos 22396 CRC32 0xdb3caddc 	Write_rows: table id 114 flags: STMT_END_F
 
-    
     ```
-=======
-* 检测**BINLOG**到**BINLOG**段的行数放入一个集合中, 变量匹配, 如果集合中有删除`delete`, 字段, 则不写入到结果文件中.
->>>>>>> 1e281f56bcb1c4f8e2114ed1b454907dbd1099fc
-
-* 直接贴码了, **python** 好久没用了, 代码写的一般, 欢迎拍砖.
+* 直接贴码了, 使用命令`python cutdelete.py --input=backup.sql --output=/path/to/result.sql` **python** 好久没用了, 代码写的一般, 欢迎拍砖.
 
     ```python
         #!/usr/bin/env python
