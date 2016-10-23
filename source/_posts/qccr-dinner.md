@@ -18,17 +18,17 @@ tags:
         {
             "leader": {
                 "username": "WMS组",
-                "password": "1234"
+                "password": "********"
             },
             "assistant": {
                 "host": "smtp.exmail.qq.com:465",
                 "email": "luowenhui@qccr.com",
-                "password": "123456abC"
+                "password": "*******"
             },
             "members": [
                 {
                     "username": "twl2798",
-                    "email": "2242430415@qq.com"
+                    "email": "notify@qq.com"
                 }
             ]
         }
