@@ -1,5 +1,5 @@
 ---
-title: qccr-dinner[汽车超人晚餐自动订餐脚本]
+title: qccr-dinner
 date: 2016-10-24 00:14:00
 desc:
 tags:
