@@ -11,8 +11,8 @@ logo: /favicon.png
 
 # Comment
 # e.g disqus: seansun
-#disqus:
-duoshuo: superwm
+disqus: superwm
+#duoshuo: superwm
 
 # Analytics
 # google-analytics:
