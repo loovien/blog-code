@@ -19,7 +19,7 @@ go语言的协程实战, 爬去网页后, 匹配对应网页上的图片, 对应
 
 ## 主要代码
 
-    ```go
+    ```bash
             var wg sync.WaitGroup
 
             func Run(url string, path string, page string) {
