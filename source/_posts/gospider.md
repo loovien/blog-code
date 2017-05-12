@@ -5,17 +5,37 @@ desc:
 tags:
 ---
 
-go语言的协程实战, 爬去网页后, 匹配对应网页上的图片, 对应每个图片开启一个协程去下载.
+开始之前, 今天5.12 为我们汶川大地震逝去的人默哀, 愿他们在天堂安好.
+go语言的协程实战, 爬去网页后, 匹配对应网页上的图片, 对应每个图片开启一个协程去下载. 之前有做对比下载`http://www.zhuangbi.info/page=1~72`页所有图片, 用php费时2分50多秒, 使用goroutine实现, 费时间7s多点, 这个差距还是挺可观的.
 
 <!-- more -->
 
 ## 项目地址
 
-*. `https://github.com/vvotm/gospider`
+* `https://github.com/vvotm/gospider`
+
+## 使用
+
+1. 可克隆代码go build 安装
+2. 或直接下载window版的main.exe直接使用
+
+3. 直接运行`main.exe`查看帮助
+
+    ```bash
+        Uses: main.exe {url} [savepath] [totalPage]
+
+        url: (must) etc. http://www.zhuangbi.info
+        savepath: (option) the path where you want save images
+        totalPage: (options) only url has page placeholder. for example:
+
+            main.exe http://www.zhuangbi.info/?page={page} ./tmp 10
+
+            command will download all images from http://www.zhuangbi.info/?page=1 to http://www.zhuangbi.info/?page=10
+    ```
 
 ## 实现原理
 
-*. 通过命令行的url, 匹配下载对应的网页内容, 做正则匹配到网页的img标签, 获取到图片地址, 在对应开启协程去下载图片保存.
+* 通过命令行的url, 匹配下载对应的网页内容, 做正则匹配到网页的img标签, 获取到图片地址, 在对应开启协程去下载图片保存.
 
 ## 主要代码
 
