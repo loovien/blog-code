@@ -181,7 +181,7 @@ tags:
 
 ## 编译php5.6
 
-*. 下载[php5.6](http://hk1.php.net/get/php-5.6.30.tar.bz2/from/this/mirror)
+* 下载[php5.6](http://hk1.php.net/get/php-5.6.30.tar.bz2/from/this/mirror)
 
     ```bash
         # cd /opt/softs/
@@ -214,3 +214,14 @@ tags:
             AddType text/html .php .phtml
             AddType application/x-httpd-php .php .phtml
     ```
+
+* 测试是否ok
+
+    ```bash
+        # echo "<?php phpinfo(); " > /opt/apache2.4/htdocs/start.php
+        # curl http://localhost/start.php
+    ```
+
+
+
+
