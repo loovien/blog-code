@@ -224,4 +224,7 @@ tags:
 
 
 
+## 重启启动服务
 
+* 启动mysql `systemctl start mysql`
+* 启动apache `sysmtectl start httpd`
