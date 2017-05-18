@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: vvotm-(vv's ultimate man)
+title: superisme-(vv's ultimate man)
 subtitle: life is beautiful.
 description: keep running. keep study.!
 author: luowen<bigpao.luo@gmail.com>
@@ -12,7 +12,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://vvotm.github.io
+url: http://superisme.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -78,6 +78,6 @@ archive_generator:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/vvotm/vvotm.github.io.git
+  repo: https://github.com/superisme/superisme.github.io.git
   branch: master
   message: Site Update:{{now('YYYY-MM-DD HH:mm:ss')}}
