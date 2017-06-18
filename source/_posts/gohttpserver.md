@@ -50,20 +50,20 @@ func main() {
 
 ## 使用
 
-- 查看帮助 `gohttpserver.exe -h`
+查看帮助 `gohttpserver.exe -h`
 
-    ```bash
-        $ gohttpserver.exe -h
-            Usage of gohttpserver.exe:
-              -host string
-                    host ip address (default "0.0.0.0")
-              -path string
-                    server document root (default "./")
-              -port int
-                    server port listen (default 8000)
-    ```
+```bash
+    $ gohttpserver.exe -h
+        Usage of gohttpserver.exe:
+          -host string
+                host ip address (default "0.0.0.0")
+          -path string
+                server document root (default "./")
+          -port int
+                server port listen (default 8000)
+```
 
-- 启动 `gohttpserver.exe --host=127.0.0.1 --port=9999 --path=d:/workspaces`
+启动 `gohttpserver.exe --host=127.0.0.1 --port=9999 --path=d:/workspaces`
 
 **有问题, 欢迎拍砖**
 
