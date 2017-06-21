@@ -12,19 +12,19 @@ tags: git, submodule
 
 <!-- more -->
 
-## 写在前面的话
+### 写在前面的话
 
 场景, 有快业务代码, 很多很多个项目都要调用, (比如业务监控代码, 需要在个个业务中调用), 理所当的想把它封装成一个composer包(针对php开发)
 然后其他项目只要`composer require monitorpkg`即可, 然后将代码加入到仓库, 和项目一起发布OK了, (一般我们都把`vendor`目录下一起加入到仓库, 1, 方便前端同学
 一起开发, 总不能让前端同学一安装composer吧, 2, 线上发布也简单, 你可以发布后挂个钩子, `composer update`一下, 但实际情况不会理想, 曾经我们项目就是这样做, 发现
 每次发布项目要等好几分钟, 随着项目变大, 10多分钟才发布OK, 这绝对不是你想要的), 问题来了, 我发现`composer install monitorpkg`的代码不能加入到项目仓库. ~~~
 
-## 原因追踪
+### 原因追踪
 
 `composer install`下来的第三方包不能加入仓库, 没道理, 以前也是这么干的呀, cd到安装的第三方包目录下(`vendor/organization/monitorpkg`) `ls -a` 发现.git目录也
 down下来了? 为什么?
 
-## [composer repositories](https://getcomposer.org/doc/05-repositories.md)
+### [composer repositories](https://getcomposer.org/doc/05-repositories.md)
 
 composer 仓库地址有类型有4类别
 
@@ -54,24 +54,22 @@ composer.json 文件如下
         }
     ],
     "require": {
-        "myparkfolio/jars-slf4j": "^1.5"
+        "luowen/zqphplib": "dev-master"
     }
 }
 
 ```
 
-## gitsubmodule 登场
-
-怎么解决呢, 办法肯定是有的.
+### 怎么解决呢, 办法肯定是有的.
 
 1. 使用`git submodule`实现
 
-    添加我们写的第三方包的git地址作为项目的子模块
+    添加我们写的第三方包的git地址作为项目的子模块可参考[gitsubmodule documention][2], [Working with submodules][1]
 
-        ```bash
-            $ cd vendor/organiztion/
-            $ git submodule add https://my-privite-gitrepo.com/mycustomer-package.git monitorypkg
-        ```
+    ```bash
+        $ cd vendor/organiztion/
+        $ git submodule add https://my-privite-gitrepo.com/mycustomer-package.git monitorypkg
+    ```
     还没完事, 每次发布项目后 需要执行 `git submodule update --init --recursive` 把子模块的项目代码拉去下来
     很显然, 这不是我们想要的
 
@@ -99,7 +97,10 @@ composer.json 文件如下
     ```
 
 
-**关于更多的gitsubmodule例子(拆分项目成多个子模块, 等等..)参考[Working with submodules](https://github.com/blog/2104-working-with-submodules)**
+**关于更多的gitsubmodule例子(拆分项目成多个子模块, 等等..)参考[gitsubmodule][2], [Working with submodules][1]**
 **综合考虑尽量避免使用gitsubmodule这个功能, 成本比较高, 并没想的那么美好**
+
+[1]: https://github.com/blog/2104-working-with-submodules
+[2]: https://git-scm.com/docs/git-submodule
 
 **欢迎拍砖, 我的disqus插件被强了, 一般人拍不了!😄😄😄**
