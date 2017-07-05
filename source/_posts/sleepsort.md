@@ -13,11 +13,11 @@ tags: sort, javascript,
 
 感觉很神秘? 上码... 😂😂😂
 
-    ```javascript
-        var data = [1,23,2,3, 20, 11, 24, 100];
-        data.map((item) => {
-            setTimeout(() => {
-                console.log(item)
-            }, item)
-        })
-    ```
+```javascript
+    var data = [1,23,2,3, 20, 11, 24, 100];
+    data.map((item) => {
+        setTimeout(() => {
+            console.log(item)
+        }, item)
+    })
+```
