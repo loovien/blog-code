@@ -18,8 +18,7 @@ tags: sort, javascript,
     var sorteddata = [];
     data.map((item) => {
         setTimeout(() => {
-            sorteddata.push(item)
+            console.log(item)
         }, item)
     });
-    console.log(sorteddata);
 ```
