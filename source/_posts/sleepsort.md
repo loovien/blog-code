@@ -15,9 +15,11 @@ tags: sort, javascript,
 
 ```javascript
     var data = [1,23,2,3, 20, 11, 24, 100];
+    var sorteddata = [];
     data.map((item) => {
         setTimeout(() => {
-            console.log(item)
+            sorteddata.push(item)
         }, item)
-    })
+    });
+    console.log(sorteddata);
 ```
