@@ -5,11 +5,12 @@ desc: 最近项目中有使用mysql的事务隔离级别, 回过头来仔细研�
 tags: MySQL, ISOLATION LEVEL
 ---
 
+# MySQL的事务隔离级别
+
 最近项目中有使用mysql的事务隔离级别, 回过头来仔细研究了一番. 发现有新的感悟, 写点东西记录一番
 
 <!-- more -->
 
-# MySQL的事务隔离级别
 
 MySQL默认事务有四中隔离级别, 分别是读未提交(READ UNCOMMITTED), 读提交(READ COMMITTED), 重复读(REPEACT READ), 序列化(SERIALIZE)
 MySQL的默认隔离级别是重复读(REPEATABLE READ), 也就是在同一个事务中, 读取的结果是一致的. 查看事务隔离级别 `show variables like 'tx_isolation'`
