@@ -14,22 +14,22 @@ tags: MySQL, ISOLATION LEVEL
 MySQL默认事务有四中隔离级别, 分别是读未提交(READ UNCOMMITTED), 读提交(READ COMMITTED), 重复读(REPEACT READ), 序列化(SERIALIZE)
 MySQL的默认隔离级别是重复读(REPEATABLE READ), 也就是在同一个事务中, 读取的结果是一致的. 查看事务隔离级别 `show variables like 'tx_isolation'`
 
-    ```sql
-        mysql> show variables like '%tx_iso%';
-        +---------------+-----------------+
-        | Variable_name | Value           |
-        +---------------+-----------------+
-        | tx_isolation  | REPEATABLE-READ |
-        +---------------+-----------------+
-    ```
+```sql
+    mysql> show variables like '%tx_iso%';
+
+            +---------------+-----------------+
+            | Variable_name | Value           |
+            +---------------+-----------------+
+            | tx_isolation  | REPEATABLE-READ |
+            +---------------+-----------------+
+```
 
 每个SESSION可以[修改事务的隔离级别](https://dev.mysql.com/doc/refman/5.7/en/set-transaction.html)
 
-    ```sql
-        SET GLOBAL tx_isolation='REPEATABLE-READ';
-        SET SESSION tx_isolation='SERIALIZABLE';
-        ....
-    ```
+```sql
+    mysql> SET GLOBAL tx_isolation='REPEATABLE-READ';
+    mysql> SET SESSION tx_isolation='SERIALIZABLE';
+```
 
 - 读未提交(READ UNCOMMITTED)
 
