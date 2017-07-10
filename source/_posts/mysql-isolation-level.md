@@ -32,7 +32,7 @@ MySQL的默认隔离级别是重复读(REPEATABLE READ), 也就是在同一个�
     mysql> SET SESSION tx_isolation='SERIALIZABLE';
 ```
 
-- 读未提交(READ UNCOMMITTED)
+- **读未提交(READ UNCOMMITTED)**
 
     举个🌰, 如果同时开启A事务, 和B事务, A事务更新一个test表的数据, 没有提交, 此时在B事务中就可以读取到
     A事务修改的结果, 这个隔离级别, 基本不用, 读的数据都不对, 脏读.
@@ -86,7 +86,7 @@ MySQL的默认隔离级别是重复读(REPEATABLE READ), 也就是在同一个�
 
         ```
 
-- 读取提交(READ COMMITED)
+- **读取提交(READ COMMITED)**
 
     读提交, 是指B事务修改了行, 并且B事务提交了, 此时A事务可以读取到B事务修改的内容
 
@@ -156,7 +156,7 @@ MySQL的默认隔离级别是重复读(REPEATABLE READ), 也就是在同一个�
 
 
         ```
-- 重复读 (REPEATABLE READ)
+- **重复读 (REPEATABLE READ)**
 
     重复读是指. B事务修改了行, 并且B事务提交了, 此时A事务还是不能读取到B事务修改的内容
     只有A事务也提交后, 才能读取到B事务修改的行数.
@@ -243,7 +243,7 @@ MySQL的默认隔离级别是重复读(REPEATABLE READ), 也就是在同一个�
         ```
 
 
-- 序列化 (SERIALIZE) 最高的隔离级别, 代价很大, 很少使用
+- **序列化 (SERIALIZE) 最高的隔离级别, 代价很大, 很少使用**
 
     这个级别和重复读(REPEATABLE READ)类似, 唯一不同的是 innodb的SELECT语句, 此隔离级别会显性的将所有的
     SELECT 语句转成 SELECT ..... LOCK IN SHARE 在AUTOCOMMIT 关闭的情况下, 在AUTOCOMMIT 开启模式下
