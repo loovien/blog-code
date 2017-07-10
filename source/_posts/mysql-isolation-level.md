@@ -87,6 +87,8 @@ MySQL的默认隔离级别是重复读(REPEATABLE READ), 也就是在同一个�
 
 - 读取提交(READ COMMITED)
 
+    读提交, 是指B事务修改了行, 并且B事务提交了, 此时A事务可以读取到B事务修改的内容
+
     ```SQL
         A事务                                           B事务
         mysql> set session transaction isolation \      mysql> set session transaction isolation \
@@ -154,6 +156,9 @@ MySQL的默认隔离级别是重复读(REPEATABLE READ), 也就是在同一个�
 
         ```
 - 重复读 (REPEATABLE READ)
+
+    重复读是指. B事务修改了行, 并且B事务提交了, 此时A事务还是不能读取到B事务修改的内容
+    只有A事务也提交后, 才能读取到B事务修改的行数.
 
     ```SQL
         A事务                                           B事务
