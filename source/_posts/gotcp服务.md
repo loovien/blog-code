@@ -5,8 +5,6 @@ desc:
 tags: go, tcp
 ---
 
-## GOLANG简单的TCP服务实现
-
 golang实现tcp非常简单, 加上goroutine, 跟好理解, 一下代码就是一个tcp连接过来后, 使用一个goroutine处理,
 通过client对象包装后, 每个client有开启两个goroutine, 一个负责循环读取客户端发送过来的数据, 一个负责循环往
 客户端连接socket中写数据, 中间通过一个chan实现数据交互. 当chan中没有数据的时候, 会阻塞client的读写goroutine.
