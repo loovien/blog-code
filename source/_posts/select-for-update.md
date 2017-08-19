@@ -1,11 +1,9 @@
 ---
-title: select-for-update
+title: SELECT ... FOR UPDATE
 date: 2017-08-19 08:23:32
 desc: mysql select for update 详解
 tags: mysql, SQL
 ---
-
-## SELECT ... FOR UPDATE
 
 这几天遇到一个问题, 关于购票库存问题. 如何能够在并发情况下减去正确的库存量. 如A请求过来, 查询库存100,
 判断大于购买的量10(假设), 可以购买.  B请求过来查询库存也是100, 然后也可以购买. 然后A请求减去了库存10,
