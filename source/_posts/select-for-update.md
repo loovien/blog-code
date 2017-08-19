@@ -23,22 +23,22 @@ tags: mysql, SQL
 
 ```sql
 
-    A请求                                                                               B请求
-    mysql> set autocommit = 0;                                                          mysql> set autocommit = 0;
-    Query OK, 0 rows affected (0.00 sec)                                                Query OK, 0 rows affected (0.00 sec)
-    mysql> select * from tx_test;                                                       mysql> select * from tx_text;
-    +------+------+                                                                     +------+------+
-    | a    | b    |                                                                     | a    | b    |
-    +------+------+                                                                     +------+------+
-    | 9999 |    2 |                                                                     | 9999 |    2 |
-    | 8888 |    3 |                                                                     | 8888 |    3 |
-    | 9999 |    2 |                                                                     | 9999 |    2 |
-    |    4 | 1000 |                                                                     |    4 | 1000 |
-    | 9999 |    2 |                                                                     | 9999 |    2 |
-    +------+------+                                                                     +------+------+
-    5 rows in set (0.00 sec)                                                            5 rows in set (0.00 sec)
+    A请求                                                  B请求
+    mysql> set autocommit = 0;                             mysql> set autocommit = 0;
+    Query OK, 0 rows affected (0.00 sec)                   Query OK, 0 rows affected (0.00 sec)
+    mysql> select * from tx_test;                          mysql> select * from tx_text;
+    +------+------+                                        +------+------+
+    | a    | b    |                                        | a    | b    |
+    +------+------+                                        +------+------+
+    | 9999 |    2 |                                        | 9999 |    2 |
+    | 8888 |    3 |                                        | 8888 |    3 |
+    | 9999 |    2 |                                        | 9999 |    2 |
+    |    4 | 1000 |                                        |    4 | 1000 |
+    | 9999 |    2 |                                        | 9999 |    2 |
+    +------+------+                                        +------+------+
+    5 rows in set (0.00 sec)                               5 rows in set (0.00 sec)
 
-    mysql> select * from tx_test where a = 4 for update;                                mysql> select * from tx_test where a = 4 for update;
+    mysql> select * from tx_test where a = 4 for update;   mysql> select * from tx_test where a = 4 for update;
     +---+------+
     | a | b    |
     +---+------+
@@ -49,12 +49,12 @@ tags: mysql, SQL
     mysql> update tx_test set b = 1 where a = 4;
     Query OK, 1 row affected (0.00 sec)
     Rows matched: 1  Changed: 1  Warnings: 0
-    mysql> commit;                                                                      +---+------+
-    Query OK, 0 rows affected (0.09 sec)                                                | a | b    |
-                                                                                        +---+------+
-                                                                                        | 4 |    1 |
-                                                                                        +---+------+
-                                                                                        1 row in set (24.81 sec)
+    mysql> commit;                                         +---+------+
+    Query OK, 0 rows affected (0.09 sec)                   | a | b    |
+                                                           +---+------+
+                                                           | 4 |    1 |
+                                                           +---+------+
+                                                           1 row in set (24.81 sec)
 ```
 
 看到B请求最后的查询, 会阻塞, 知道A请求更新玩数据后, 并且提交后, 才能拿到结果。
