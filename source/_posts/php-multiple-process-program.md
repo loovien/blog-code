@@ -8,12 +8,12 @@ tags:  swoole, multiple process
 php默认是单进程运行, 这几天php写了一个数据处理脚本, 发现很吃力, 50w的数据, 跑了1个半小时, 好累!
 于是想到了swoole的swoole_process来实现提提速度。也发现了一些问题, 记录下。
 
+<!-- more --->
+
 1. swoole创建的进程一定要调用`swoole_process::wait()`来等待回收, 不然就成为了僵死进程了。
 2. `swoole_process(callback, false, false)` 中的`callback`中的**`$this`**就是完全fork出来的父对象, 里面
-的变量, 在子进程的独立空间中, 不能数据共享. 如果要父子进程数据共享, 可以使用`swoole_table`创建全局共享
-内存实现数据共享。
-3. 使用多进程操作数据库的时候, 注意, 不能多进程更新数据库中的同一行数据, 否则(innodb)出现死锁, (myisam)
-数据会出现混乱。
+的变量, 在子进程的独立空间中, 不能数据共享. 如果要父子进程数据共享, 可以使用`swoole_table`创建全局共享 内存实现数据共享。
+3. 使用多进程操作数据库的时候, 注意, 不能多进程更新数据库中的同一行数据, 否则(innodb)出现死锁, (myisam) 数据会出现混乱。
 
 下面是事例代码
 
@@ -95,5 +95,4 @@ $multipleTask->run();
 
 ```
 
-有了多进程编程也不会很难了， PHP5.5.x在处理swoole可能会有BUG：**libgc xxxx php free() xxx**, 若出现次bug
-升级php吧, 不好改！
+有了多进程编程也不会很难了， PHP5.5.x在处理swoole可能会有BUG：**libgc xxxx php free() xxx**, 若出现次bug 升级php吧, 不好改！
