@@ -23,11 +23,11 @@ nodejs`webshot2` 一个简单的页面截图, 依赖少的可怜, 装好nodejs�
 
 ### 展示下效果图
 
-截图传递参数详情参见[webshot2](https://www.npmjs.com/package/webshot2)
+1. 截图传递参数详情参见[webshot2](https://www.npmjs.com/package/webshot2)
 
     ![展示1](/images/webshot/1.jpg)
 
-截图后的效果
+2. 截图后的效果
 
     ![展示2](/images/webshot/2.jpg)
 
