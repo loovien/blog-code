@@ -1,5 +1,5 @@
 ---
-title: 理解linux-awk
+title: 理解linux-awk命令
 date: 2017-11-30 21:36:33
 desc: awk常用案例
 tags: linux, awk
