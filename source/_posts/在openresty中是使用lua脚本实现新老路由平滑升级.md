@@ -11,16 +11,16 @@ tags: openrestry, lua
 
 **环境以及依赖软件**
 
-- window 10
-- openresty/1.13.6.1 提供网关服务
-- redis-server 提供新路由存储
-- golang 模拟提供web服务
+- window 10。
+- openresty/1.13.6.1 提供网关服务。
+- redis-server 提供新路由存储。
+- golang 模拟提供web服务。
 
 这里不对[openresty](http://openresty.org), [golang](https://golang.org/)做介绍了。
 
 **openresty配置**
 
-编辑`nginx.conf`文件, 默认使用`phalcon1`upstream,当`rewrite_by_lua_file`执行完后, 如果是新的路由, 会重写`phalcon1`到`phalcon3`
+编辑`nginx.conf`文件, 默认使用`phalcon1`upstream,当`rewrite_by_lua_file`执行完后, 如果是新的路由, 会重写`phalcon1`到`phalcon3`。
 
 ```
 upstream phalcon1 {
@@ -88,7 +88,7 @@ ngx.var.upstream = newupstream
 
 **golang实现的web服务**
 
-端口8088为老的接口服务器，提供 `/api/user/user.info1` `/api/user/user.info2` 2个接口
+端口8088为老的接口服务器，提供 `/api/user/user.info1` `/api/user/user.info2` 2个接口。
 
 ```golang
 # filename: phalcon1.go
@@ -111,7 +111,7 @@ func main()  {
 
 ```
 
-端口8089为新的接口服务器，提供 `/api/user/user.info3` 1个接口
+端口8089为新的接口服务器，提供 `/api/user/user.info3` 1个接口。
 
 ```golang
 package main
@@ -132,18 +132,18 @@ func main()  {
 
 **测试**
 
-1. 启动openresty `cd /path/to/openresty/nginx.exe`
-2. 启动redis-server `cd /path/to/redis-server/redis-server -c /path/to/redis-server.conf`
-3. 启动phalcon2 `go run phalcon3.go`
-4. 启动phalcon1 `go run phalcon1.go`
+1. 启动openresty `cd /path/to/openresty/nginx.exe`。
+2. 启动redis-server `cd /path/to/redis-server/redis-server -c /path/to/redis-server.conf`。
+3. 启动phalcon2 `go run phalcon3.go`。
+4. 启动phalcon1 `go run phalcon1.go`。
 
-5. 将新的路由写入到redis中 `redis-cli set /api/user/user.info3 1`
+5. 将新的路由写入到redis中 `redis-cli set /api/user/user.info3 1`。
 
 6. 访问 `http://localhost/api/user/user.info1`  `http://localhost/api/user/user.info2` 还是代理到了phalcon1上。
 7. 访问 `http://localhost/api/user/user.info3` 就代理到了phalcon3上了。
 
 **后续**
 
-当有新的接口发布时候, 记得往redis写入新的路由标识即可了
+当有新的接口发布时候, 记得往redis写入新的路由标识即可了。
 
 
