@@ -14,7 +14,13 @@ tags: php compile
 - 系统 centos7
 - php7.2
 
-**centos编译之前记得安装开发包 `yum group install "Development tools"`, 不然gcc g++各供工具, 会疯掉的!**
+#### openSSL 扩展
+
+编译添加openSSL扩展
+
+```bash
+    yum install openssl openssl-devel
+```
 
 #### bz2 扩展
 
