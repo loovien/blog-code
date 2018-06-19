@@ -92,15 +92,48 @@ hello("luowen") # output: *****hello luowen*****
 装饰方法也可以传递参数
 
 ```python
-https://www.thecodeship.com/patterns/guide-to-python-function-decorators/
+def tag(ele):
+    def tag_decorator(func):
+        def wrapper(name):
+            return "<{0}> {1} <{0}>".format(ele, func(name))
+        return wrapper 
+    return tag_decorator
+
+
+@tag("p")
+def hello(name):
+    return "hello" + name
+
+hello("luowen") # output: <p> hello luowen </p>
 ```
 
+此处有个问题, `__name__, __doc__, __module__` .. 都被wapper覆盖了
+
+```python
+
+print(hello.__name__) # output: wrapper
+
+```
+
+解决
+
+```python
+
+from functools import wraps
+
+def tag(ele):
+    def tag_decorator(func):
+        @wraps(func)
+        def wrapper(name):
+            return "<{0}> {1} <{0}>".format(ele, func(name))
+        return wrapper 
+    return tag_decorator
 
 
+@tag("p")
+def hello(name):
+    return "hello" + name
 
-
-
-
-
+hello("luowen") # output: <p> hello luowen </p>
 
 ```
