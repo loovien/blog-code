@@ -84,5 +84,5 @@ ps: http2的安全问题是基于https上的。
 
 打开chrome F12 查看 `h2`表示已经使用了http2了
 
-![http2协议支持](/images/http2.png)
+![http2协议支持](/images/http2.jpg)
 
