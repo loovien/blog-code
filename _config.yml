@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: luowen&veve-(vv's ultimate man)
+title: loovien&weiwei-(luowen ❤️ wwei)
 subtitle: life is beautiful.
 description: keep running. keep study.!
 author: luowen<bigpao.luo@gmail.com>
@@ -12,7 +12,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://vvotm.github.io
+url: https://loovien.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
