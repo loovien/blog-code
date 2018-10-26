@@ -112,5 +112,5 @@ tags: javascript, chart
     })();
 ```
 
-![OK](/images/json-buider4chart.jpg)
+![执行结果](/images/debug/5.png)
 
