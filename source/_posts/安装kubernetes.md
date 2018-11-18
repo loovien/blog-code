@@ -11,10 +11,11 @@ tags: kubernetes, k8s
 
 ### 环境 (算是入门级服务器了)
 
+ > CentOS6 折腾了一下, 放弃了,浪费时间基本玩不了。
+
  1. Ubuntu 16.04.1 LTS
  2. 2核2G
 
- ps: CentOS6 折腾了一下, 放弃了,浪费时间基本玩不了。
 
  ### 安装docker
 
@@ -98,6 +99,12 @@ tags: kubernetes, k8s
  其实就是更新端口, 和 kube-apiserver 通信。
 
 
- 2 校验是否 OK
+ 2. 校验是否成功
+
+ ```bash
+ kubectl get nodes
+ NAME                STATUS     ROLES    AGE   VERSION
+ubuntu               NotReady   master   8d    v1.12.2
+ ```
 
  ps: 可以愉快的玩k8s了
