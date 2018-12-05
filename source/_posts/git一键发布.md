@@ -36,7 +36,7 @@ if [ ! -z "${feature_branch##*/*}" ];then
   exit 1
 fi
 
-case $env in
+case $environment in
   "beta")
     # merge and push to beta
     beta="git fetch && git checkout $feature_branch && git pull && git checkout beta && git pull && git merge $feature_branch && git push"
