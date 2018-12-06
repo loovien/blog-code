@@ -12,7 +12,6 @@ tags: git
 bash版本
 
 ```bash
-
 #!/bin/bash
 # @Author luowen<loovien@163.com>
 # @time: 2018-12-05
@@ -47,16 +46,14 @@ case $environment in
     ######################################### create release branch ###################################
 
     relese_branch="release/"$(echo $feature_branch | cut -d "/" -f2)
-    echo "release branch: $release_branch"
-    echo
     while ((1))
     do
       read -r -p "use $release_branch? [Y/N]" ok
       case $ok in 
-        N/n)
-          read -r  -p "Please input your release branch name!" release_branch
+        "N")
+          read -r  -p "Please input your release branch name: " release_branch
           ;;
-        Y/y)
+        "Y")
           break
           ;;
       esac
@@ -64,7 +61,7 @@ case $environment in
 
     ######################################## merge code ################################################
 
-    merge_cmd="git fetch && git checkout $feature_branch && git pull && git checkout develop && git pull && git merge $feature_branch && git branch -d $release_branch && git checkout -b $release_branch && git checkout master && git pull && git merge $release_branch && git push"
+    merge_cmd="git fetch && git checkout $feature_branch && git pull && git checkout develop && git pull && git merge $feature_branch && git checkout -b $release_branch && git checkout master && git pull && git merge $release_branch && git push"
     eval $merge_cmd
     if [ ! $? -eq 0 ];then
       echo "merge code failture."
@@ -82,14 +79,13 @@ case $environment in
       echo "confirm $deploy_tag"
       read -r -p "use this tag? [Y/N]" confirm
       case $confirm in 
-        Y/y)
+        Y)
           break
       esac
     done
     echo "this deploy use $deploy_tag"
     echo 
-    read -r -p "Please input message as tag inforamtion" $tag_message
-    tag_cmd="git tag $read -am $tag_message"
+    tag_cmd="git tag $deploy_tag -am `date '+%F:%T'` && git push origin $deploy_tag"
     eval $tag_cmd
 
     if [ ! $? -eq 0 ];then
@@ -98,9 +94,13 @@ case $environment in
     fi
 
     ################################# delete branch ###################################################
-
-    delete_cmd="git branch -d $release_branch && git branch -d $feature_branch && git push origin $feature_branch --delete"
-    eval $delete_cmd
+    read -r -p "delete local and remote branch" ok
+    case $ok in 
+      Y)
+        delete_cmd="git branch -d $release_branch && git branch -d $feature_branch && git push origin $feature_branch --delete"
+        eval $delete_cmd
+        ;;
+    esac
     ;;
   "gray")
     ######################################### create release branch ###################################
@@ -112,10 +112,10 @@ case $environment in
     do
       read -r -p "use $release_branch? [Y/N]" ok
       case $ok in 
-        N/n)
+        N)
           read -r  -p "Please input your release branch name!" release_branch
           ;;
-        Y/y)
+        Y)
           break
           ;;
       esac
@@ -141,14 +141,13 @@ case $environment in
       echo "confirm $deploy_tag"
       read -r -p "use this tag? [Y/N]" confirm
       case $confirm in 
-        Y/y)
+        Y)
           break
       esac
     done
     echo "this deploy use $deploy_tag"
     echo 
-    read -r -p "Please input message as tag inforamtion" $tag_message
-    tag_cmd="git tag $read -am $tag_message"
+    tag_cmd="git tag $read -am `date '+%F:%T'`"
     eval $tag_cmd
 
     if [ ! $? -eq 0 ];then
