@@ -10,4 +10,8 @@ linux常用的查看性能命令集合。
 
 <!-- more -->
 
+#### 如图
+
 ![linux performance tools](/images/linux-performance.jpg)
+
+
