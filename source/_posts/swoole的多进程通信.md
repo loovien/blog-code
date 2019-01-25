@@ -145,7 +145,7 @@ class ProcessManager
                 $worker->exit(0);
             } catch (\Exception $e) {
                 $worker->push(static::error($e->getCode(), $e->getMessage()));
-                $worker->exit($e->getMessage());
+                $worker->exit($e->getCode());
             }
         });
         $process->useQueue(crc32($KEY));
