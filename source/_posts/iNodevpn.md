@@ -5,7 +5,11 @@ desc: InodeClient failed to get scenario and connection information, please rest
 tags: vpn
 ---
 
-今天在家办公， 需要vpn连接到办公室网络， 的用VPN， 找的运维哥哥要了安装包， 安装好了， 发现用不了。 一直出现**failed to get scenario and connection information, please restart the client to try**.  作为一个开发，这个问题必须解决它。
+今天在家办公， 需要vpn连接到办公室网络， 的用VPN， 找的运维哥哥要了安装包， 安装好了， 发现用不了。 一直出现 
+
+**failed to get scenario and connection information, please restart the client to try**.
+
+作为一个开发，这个问题必须解决它。
 
 <!-- more -->
 
