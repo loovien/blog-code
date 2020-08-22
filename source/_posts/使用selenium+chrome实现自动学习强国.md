@@ -17,11 +17,11 @@ tags: selenium chromedriver
 
 例子中学习文章1篇， 文章学习时长3秒， 视频学习1个 视频学习时间3秒。
 
-[demo](/videos/xuexi1.mp4)
+![demo](/videos/xuexi1.gif)
 
 
 PS: 学习官方说会有检测机制，虽然把driver的标示去掉了，浏览器的标示也去掉了， 具体也不知道是怎么检测的，所以谨慎使用。
 
 需要学习源码可以加微信，获取。
 
-![超级罗大文](/images/weixin.png)
+![超级罗大文](/images/weixin1.png)
