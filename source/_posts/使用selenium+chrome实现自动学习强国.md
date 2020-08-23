@@ -17,7 +17,7 @@ tags: selenium chromedriver
 
 例子中学习文章1篇， 文章学习时长3秒， 视频学习1个 视频学习时间3秒。
 
-![案例](/videos/xuexi1.gif)
+![案例](/images/videos/xuexi1.gif)
 
 
 PS: 学习官方说会有检测机制，虽然把driver的标示去掉了，浏览器的标示也去掉了， 具体也不知道是怎么检测的，所以谨慎使用。
